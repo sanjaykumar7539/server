@@ -3,82 +3,162 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sanjay Advanced Server</title>
+<title>Sanjay Advanced Unique Server</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 <style>
   :root {
     --primary-color: #2a9d8f;
     --bg-color: #121212;
-    --card-bg: rgba(255 255 255 / 0.05);
+    --card-bg: rgba(25, 25, 35, 0.7);
     --text-light: #eee;
-    --text-muted: #999;
-    --shadow: 0 8px 20px rgb(42 157 143 / 0.3);
+    --text-muted: #aaa;
+    --shadow: 0 8px 20px rgba(42, 157, 143, 0.5);
+    --button-gradient: linear-gradient(45deg, #1e3c72, #2a9d8f, #1de9b6);
+    --glow: #2af598;
   }
   body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: var(--bg-color);
+    background: linear-gradient(135deg, #121212, #1c1c2e, #121212);
     color: var(--text-light);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    overflow: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    top: -40%;
+    left: -40%;
+    width: 200vw;
+    height: 200vh;
+    background: linear-gradient(60deg, #2a9d8f, #1de9b6, #1e3c72, #162a45);
+    filter: blur(160px);
+    animation: gradientShift 15s ease infinite;
+    z-index: -1;
+  }
+  @keyframes gradientShift {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
   }
   .container {
     background: var(--card-bg);
-    padding: 30px 25px;
+    padding: 30px 30px;
     border-radius: 30px;
-    max-width: 440px;
+    max-width: 460px;
     box-shadow: var(--shadow);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(14px);
     display: flex;
     flex-direction: column;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    overflow: hidden;
+  }
+  .container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: -3px;
+    background: var(--button-gradient);
+    border-radius: 33px;
+    filter: blur(24px);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+  .container:hover::before {
+    opacity: 1;
   }
   .header {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 28px;
   }
   .header h1 {
-    font-weight: 600;
-    font-size: 1.8rem;
+    font-weight: 700;
+    font-size: 2rem;
     margin: 0;
-    color: var(--primary-color);
+    color: var(--glow);
+    letter-spacing: 0.1em;
+    text-shadow:
+      0 0 8px var(--glow),
+      0 0 16px var(--glow),
+      0 0 24px rgba(42, 245, 152, 0.6);
   }
   .header p {
-    color: var(--text-muted);
-    margin: 6px 0 0;
+    margin-top: 6px;
     font-weight: 400;
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-style: italic;
   }
   .links {
     display: grid;
-    gap: 15px;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   }
   .link-btn {
+    position: relative;
     background: transparent;
+    border-radius: 16px;
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
-    border-radius: 15px;
-    padding: 14px 20px;
     font-weight: 600;
     font-size: 1rem;
-    text-align: center;
     text-decoration: none;
-    transition: all 0.3s ease;
+    padding: 14px 22px;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 0.3s ease;
   }
-  .link-btn:hover {
-    background: var(--primary-color);
+  .link-btn .icon {
+    margin-right: 9px;
+    font-size: 1.3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(42, 157, 143, 0.15);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    transition: background-color 0.3s ease;
+  }
+  .link-btn:hover,
+  .link-btn:focus {
     color: #121212;
-    box-shadow: 0 6px 15px rgb(42 157 143 / 0.7);
-    transform: translateY(-4px) scale(1.05);
   }
-  .icon {
-    margin-right: 8px;
-    font-size: 1.2rem;
+  .link-btn:hover .icon,
+  .link-btn:focus .icon {
+    background-color: var(--primary-color);
+    box-shadow:
+      0 0 8px var(--primary-color),
+      0 0 18px var(--primary-color);
+  }
+  .link-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #00ffc3, #2a9d8f);
+    opacity: 0;
+    border-radius: 16px;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+  }
+  .link-btn:hover::before,
+  .link-btn:focus::before {
+    opacity: 0.4;
+    filter: blur(7px);
+  }
+  .link-btn span {
+    position: relative;
+    z-index: 1;
   }
   @media (min-width: 768px) {
     .container {
@@ -94,15 +174,15 @@
       <p>Hello San! Have a nice day buddy 👋</p>
     </header>
     <nav class="links" aria-label="Downloadable files">
-      <a href="timetable.jpg" download class="link-btn" role="button" tabindex="0"><span class="icon">📘</span>Time Table</a>
-      <a href="DBMS 1.pdf" download class="link-btn" role="button" tabindex="0"><span class="icon">💾</span>DBMS</a>
-      <a href="#" download class="link-btn" role="button" tabindex="0"><span class="icon">📟</span>ADLD</a>
-      <a href="AI.pdf" download class="link-btn" role="button" tabindex="0"><span class="icon">🤖</span>AI</a>
-      <a href="ADLD LAB.pdf" download class="link-btn" role="button" tabindex="0"><span class="icon">📂</span>ADLD LAB</a>
-      <a href="SQL .pdf" download class="link-btn" role="button" tabindex="0"><span class="icon">📂</span>SQL LAB</a>
-      <a href="SAC LAB.docx" download class="link-btn" role="button" tabindex="0"><span class="icon">📂</span>SAC LAB</a>
-      <a href="SAC LAB.docx" download class="link-btn" role="button" tabindex="0"><span class="icon">📂</span>Resume Sanjay</a>
-      <a href="SAC LAB.docx" download class="link-btn" role="button" tabindex="0"><span class="icon">📂</span>2301GEX05_ADLD QB</a>
+      <a href="timetable.jpg" download class="link-btn" role="button" tabindex="0"><span class="icon">📘</span><span>Time Table</span></a>
+      <a href="DBMS 1.pdf" download class="link-btn" role="button" tabindex="0"><span class="icon">💾</span><span>DBMS</span></a>
+      <a href="#" download class="link-btn" role="button" tabindex="0"><span class="icon">📟</span><span>ADLD</span></a>
+      <a href="AI.pdf" download class="link-btn" role="button" tabindex="0"><span class="icon">🤖</span><span>AI</span></a>
+      <a href="ADLD LAB.pdf" download class="link-btn" role="button" tabindex="0"><span class="icon">📂</span><span>ADLD LAB</span></a>
+      <a href="SQL .pdf" download class="link-btn" role="button" tabindex="0"><span class="icon">📂</span><span>SQL LAB</span></a>
+      <a href="SAC LAB.docx" download class="link-btn" role="button" tabindex="0"><span class="icon">📂</span><span>SAC LAB</span></a>
+      <a href="SAC LAB.docx" download class="link-btn" role="button" tabindex="0"><span class="icon">📂</span><span>Resume Sanjay</span></a>
+      <a href="SAC LAB.docx" download class="link-btn" role="button" tabindex="0"><span class="icon">📂</span><span>2301GEX05_ADLD QB</span></a>
     </nav>
   </div>
 </body>
