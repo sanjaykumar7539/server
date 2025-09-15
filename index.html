@@ -3,77 +3,90 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sanjay Advanced Unique Server</title>
+<title>Sanjay Server with Floating Clouds</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 <style>
   :root {
     --primary-color: #2a9d8f;
-    --bg-color: #121212;
-    --card-bg: rgba(25, 25, 35, 0.7);
     --text-light: #eee;
     --text-muted: #aaa;
     --shadow: 0 8px 20px rgba(42, 157, 143, 0.5);
-    --button-gradient: linear-gradient(45deg, #1e3c72, #2a9d8f, #1de9b6);
-    --glow: #2af598;
+    --card-bg: rgba(25, 25, 35, 0.7);
   }
   body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #121212, #1c1c2e, #121212);
+    background: linear-gradient(to top, #0d1a2a, #1a2a4c);
     color: var(--text-light);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;
     overflow: hidden;
+    padding: 20px;
+    position: relative;
   }
-  body::before {
-    content: "";
+
+  /* Cloud Shapes */
+  .cloud {
     position: fixed;
-    top: -40%;
-    left: -40%;
-    width: 200vw;
-    height: 200vh;
-    background: linear-gradient(60deg, #2a9d8f, #1de9b6, #1e3c72, #162a45);
-    filter: blur(160px);
-    animation: gradientShift 15s ease infinite;
-    z-index: -1;
+    background: rgba(255 255 255 / 0.15);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.1));
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
   }
-  @keyframes gradientShift {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
+  /* Multiple cloud layers with different sizes and speeds */
+  .cloud1 {
+    width: 180px;
+    height: 60px;
+    top: 15%;
+    left: -200px;
+    animation: floatRight 90s linear infinite;
   }
+  .cloud2 {
+    width: 140px;
+    height: 50px;
+    top: 40%;
+    left: -160px;
+    animation: floatRight 70s linear infinite;
+    opacity: 0.7;
+  }
+  .cloud3 {
+    width: 220px;
+    height: 70px;
+    top: 65%;
+    left: -250px;
+    animation: floatRight 110s linear infinite;
+  }
+  .cloud4 {
+    width: 100px;
+    height: 40px;
+    top: 80%;
+    left: -120px;
+    animation: floatRight 85s linear infinite;
+    opacity: 0.6;
+  }
+
+  @keyframes floatRight {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(130vw); }
+  }
+
+  /* Container with glass effect */
   .container {
+    position: relative;
     background: var(--card-bg);
-    padding: 30px 30px;
     border-radius: 30px;
     max-width: 460px;
+    padding: 30px 30px;
     box-shadow: var(--shadow);
     backdrop-filter: blur(14px);
     display: flex;
     flex-direction: column;
-    border: 3px solid transparent;
-    background-clip: padding-box;
-    position: relative;
-    overflow: hidden;
+    z-index: 10;
   }
-  .container::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    margin: -3px;
-    background: var(--button-gradient);
-    border-radius: 33px;
-    filter: blur(24px);
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
-    z-index: -1;
-  }
-  .container:hover::before {
-    opacity: 1;
-  }
+
   .header {
     text-align: center;
     margin-bottom: 28px;
@@ -82,12 +95,9 @@
     font-weight: 700;
     font-size: 2rem;
     margin: 0;
-    color: var(--glow);
-    letter-spacing: 0.1em;
-    text-shadow:
-      0 0 8px var(--glow),
-      0 0 16px var(--glow),
-      0 0 24px rgba(42, 245, 152, 0.6);
+    color: var(--primary-color);
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 10px rgba(42,157,143,0.6);
   }
   .header p {
     margin-top: 6px;
@@ -96,6 +106,7 @@
     color: var(--text-muted);
     font-style: italic;
   }
+
   .links {
     display: grid;
     gap: 18px;
@@ -168,6 +179,13 @@
 </style>
 </head>
 <body>
+  <!-- Clouds -->
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
+  <div class="cloud cloud4"></div>
+
+  <!-- Main container -->
   <div class="container" role="main" aria-label="Sanjay Kumar Server Files">
     <header class="header">
       <h1>SANJAY KUMAR SERVER</h1>
