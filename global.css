@@ -1,41 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <title>Anisha Server - AI Interface</title>
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <main class="iphone">
-      <section class="div">
-        <header>
-          <h1 class="text-wrapper">ANISHA SERVER</h1>
-          <h2 class="text-wrapper-2">Hello Welcome</h2>
-        </header>
-        <nav class="overlap-group" role="navigation" aria-label="AI options row 1">
-          <button class="rectangle" aria-label="AI option 1">
-            <span class="text-wrapper-3">AI</span>
-          </button>
-          <button class="rectangle-2" aria-label="AI option 2">
-            <span class="text-wrapper-4">AI</span>
-          </button>
-        </nav>
-        <nav class="overlap" role="navigation" aria-label="AI options row 2">
-          <button class="rectangle" aria-label="AI option 3">
-            <span class="text-wrapper-3">AI</span>
-          </button>
-          <button class="rectangle-3" aria-label="AI option 4">
-            <span class="text-wrapper-5">AI</span>
-          </button>
-        </nav>
-        <section class="div-wrapper">
-          <button class="ai-button" aria-label="Main AI option">
-            <span class="text-wrapper-6">AI</span>
-          </button>
-        </section>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Anisha Server - Advanced AI Interface</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  :root {
+    --primary-color: #4a90e2;
+    --secondary-color: #50e3c2;
+    --bg-dark: #121212;
+    --btn-bg: rgba(255 255 255 / 0.1);
+    --btn-hover: rgba(255 255 255 / 0.2);
+    --text-light: #fff;
+    --shadow: 0 4px 15px rgba(74,144,226,0.5);
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg-dark);
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 15px;
+  }
+
+  main.iphone {
+    background: rgba(255 255 255 / 0.05);
+    backdrop-filter: blur(12px);
+    border-radius: 25px;
+    padding: 30px 25px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+
+  header h1.text-wrapper {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-align: center;
+  }
+
+  header h2.text-wrapper-2 {
+    margin-top: 4px;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    text-align: center;
+  }
+
+  nav.overlap-group,
+  nav.overlap {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  button.rectangle,
+  button.rectangle-2,
+  button.rectangle-3,
+  button.ai-button {
+    background: var(--btn-bg);
+    border-radius: 18px;
+    border: none;
+    padding: 18px 28px;
+    color: var(--text-light);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.4s ease;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+  }
+
+  button.rectangle:hover,
+  button.rectangle-2:hover,
+  button.rectangle-3:hover,
+  button.ai-button:hover,
+  button.rectangle:focus,
+  button.rectangle-2:focus,
+  button.rectangle-3:focus,
+  button.ai-button:focus {
+    background: var(--btn-hover);
+    outline: none;
+    box-shadow: 0 0 12px var(--primary-color);
+    transform: translateY(-3px) scale(1.05);
+  }
+
+  /* Distinct styles for button variants */
+  button.rectangle-2 {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    box-shadow: 0 6px 15px rgba(106,17,203,0.6);
+  }
+  button.rectangle-2:hover,
+  button.rectangle-2:focus {
+    background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+  }
+
+  button.rectangle-3 {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    box-shadow: 0 6px 15px rgba(18,152,142,0.6);
+  }
+  button.rectangle-3:hover,
+  button.rectangle-3:focus {
+    background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
+  }
+
+  button.ai-button {
+    font-size: 1.3rem;
+    padding: 22px 40px;
+    border-radius: 30px;
+    background: var(--primary-color);
+    box-shadow: 0 8px 24px rgba(74,144,226,0.7);
+    color: white;
+  }
+  button.ai-button:hover,
+  button.ai-button:focus {
+    background: var(--secondary-color);
+    box-shadow: 0 12px 30px rgba(80,227,194,0.8);
+  }
+</style>
+</head>
+<body>
+  <main class="iphone" aria-label="Anisha Server main interface">
+    <section class="div">
+      <header>
+        <h1 class="text-wrapper">ANISHA SERVER</h1>
+        <h2 class="text-wrapper-2">Hello Welcome</h2>
+      </header>
+      <nav class="overlap-group" role="navigation" aria-label="AI options row 1">
+        <button class="rectangle" aria-label="AI option 1">
+          AI 1
+        </button>
+        <button class="rectangle-2" aria-label="AI option 2">
+          AI 2
+        </button>
+      </nav>
+      <nav class="overlap" role="navigation" aria-label="AI options row 2">
+        <button class="rectangle" aria-label="AI option 3">
+          AI 3
+        </button>
+        <button class="rectangle-3" aria-label="AI option 4">
+          AI 4
+        </button>
+      </nav>
+      <section class="div-wrapper" style="margin-top: 30px; display:flex; justify-content:center;">
+        <button class="ai-button" aria-label="Main AI option">
+          Main AI
+        </button>
       </section>
-    </main>
-  </body>
+    </section>
+  </main>
+</body>
 </html>
