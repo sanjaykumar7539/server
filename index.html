@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sanjay Server with Floating Clouds</title>
+<title>Sanjay Server with Cloud-Shaped Floating Buttons</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 <style>
   :root {
@@ -12,6 +12,7 @@
     --text-muted: #aaa;
     --shadow: 0 8px 20px rgba(42, 157, 143, 0.5);
     --card-bg: rgba(25, 25, 35, 0.7);
+    --cloud-bg: rgba(255 255 255 / 0.12);
   }
   body {
     margin: 0;
@@ -26,8 +27,7 @@
     padding: 20px;
     position: relative;
   }
-
-  /* Cloud Shapes */
+  /* Clouds background shapes */
   .cloud {
     position: fixed;
     background: rgba(255 255 255 / 0.15);
@@ -36,38 +36,10 @@
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
-  /* Multiple cloud layers with different sizes and speeds */
-  .cloud1 {
-    width: 180px;
-    height: 60px;
-    top: 15%;
-    left: -200px;
-    animation: floatRight 90s linear infinite;
-  }
-  .cloud2 {
-    width: 140px;
-    height: 50px;
-    top: 40%;
-    left: -160px;
-    animation: floatRight 70s linear infinite;
-    opacity: 0.7;
-  }
-  .cloud3 {
-    width: 220px;
-    height: 70px;
-    top: 65%;
-    left: -250px;
-    animation: floatRight 110s linear infinite;
-  }
-  .cloud4 {
-    width: 100px;
-    height: 40px;
-    top: 80%;
-    left: -120px;
-    animation: floatRight 85s linear infinite;
-    opacity: 0.6;
-  }
-
+  .cloud1 { width: 180px; height: 60px; top: 15%; left: -200px; animation: floatRight 90s linear infinite; }
+  .cloud2 { width: 140px; height: 50px; top: 40%; left: -160px; animation: floatRight 70s linear infinite; opacity: 0.7; }
+  .cloud3 { width: 220px; height: 70px; top: 65%; left: -250px; animation: floatRight 110s linear infinite; }
+  .cloud4 { width: 100px; height: 40px; top: 80%; left: -120px; animation: floatRight 85s linear infinite; opacity: 0.6; }
   @keyframes floatRight {
     0% { transform: translateX(0); }
     100% { transform: translateX(130vw); }
@@ -86,7 +58,6 @@
     flex-direction: column;
     z-index: 10;
   }
-
   .header {
     text-align: center;
     margin-bottom: 28px;
@@ -109,67 +80,70 @@
 
   .links {
     display: grid;
-    gap: 18px;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 22px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
+  /* Cloud-shaped buttons */
   .link-btn {
     position: relative;
-    background: transparent;
-    border-radius: 16px;
+    background: var(--cloud-bg);
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
     font-weight: 600;
     font-size: 1rem;
     text-decoration: none;
-    padding: 14px 22px;
+    padding: 16px 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    overflow: hidden;
-    transition: color 0.3s ease;
+    overflow: visible;
+    transition: color 0.3s ease, background 0.3s ease;
+    animation: floatUpDown 5s ease-in-out infinite;
+    border-radius: 90% / 70% / 50% 50%;
+    box-shadow:
+      8px 8px 15px rgba(42, 157, 143, 0.2),
+      inset 0 -5px 8px rgba(255 255 255 / 0.2);
+  }
+  .link-btn:nth-child(odd) {
+    animation-delay: 0s;
+  }
+  .link-btn:nth-child(even) {
+    animation-delay: 2.5s;
   }
   .link-btn .icon {
-    margin-right: 9px;
-    font-size: 1.3rem;
+    margin-right: 12px;
+    font-size: 1.4rem;
+    background: rgba(42, 157, 143, 0.35);
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(42, 157, 143, 0.15);
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    box-shadow: 0 0 6px rgba(42, 157, 143, 0.5);
     transition: background-color 0.3s ease;
   }
   .link-btn:hover,
   .link-btn:focus {
     color: #121212;
+    background: #2a9d8f;
+    box-shadow:
+      10px 10px 22px rgba(42, 157, 143, 0.5),
+      inset 0 -5px 12px rgba(255 255 255 / 0.4);
+    animation-play-state: paused;
   }
   .link-btn:hover .icon,
   .link-btn:focus .icon {
-    background-color: var(--primary-color);
+    background-color: #1de9b6;
     box-shadow:
-      0 0 8px var(--primary-color),
-      0 0 18px var(--primary-color);
+      0 0 12px #1de9b6,
+      0 0 20px #1de9b6;
   }
-  .link-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, #00ffc3, #2a9d8f);
-    opacity: 0;
-    border-radius: 16px;
-    transition: opacity 0.4s ease;
-    z-index: 0;
-  }
-  .link-btn:hover::before,
-  .link-btn:focus::before {
-    opacity: 0.4;
-    filter: blur(7px);
-  }
-  .link-btn span {
-    position: relative;
-    z-index: 1;
+
+  @keyframes floatUpDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
   @media (min-width: 768px) {
     .container {
@@ -179,13 +153,12 @@
 </style>
 </head>
 <body>
-  <!-- Clouds -->
+  <!-- Clouds in background -->
   <div class="cloud cloud1"></div>
   <div class="cloud cloud2"></div>
   <div class="cloud cloud3"></div>
   <div class="cloud cloud4"></div>
 
-  <!-- Main container -->
   <div class="container" role="main" aria-label="Sanjay Kumar Server Files">
     <header class="header">
       <h1>SANJAY KUMAR SERVER</h1>
