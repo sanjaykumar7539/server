@@ -3,10 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Anisha Server - Classic Unique AI Interface</title>
+<title>Anisha Server - Floating Unique Buttons</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Montserrat:wght@400;600&display=swap');
-
   :root {
     --primary-color: #3a405a;
     --accent-color: #d4a373;
@@ -16,7 +15,6 @@
     --text-color: #2c2e43;
     --border-color: #b09e82;
   }
-
   body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
@@ -28,7 +26,6 @@
     min-height: 100vh;
     padding: 20px;
   }
-
   main.container {
     background: white;
     max-width: 440px;
@@ -38,12 +35,10 @@
     padding: 30px 35px;
     box-sizing: border-box;
   }
-
   header {
     text-align: center;
     margin-bottom: 30px;
   }
-
   h1.text-wrapper {
     font-family: 'Merriweather', serif;
     font-weight: 700;
@@ -52,20 +47,17 @@
     margin-bottom: 6px;
     letter-spacing: 0.05em;
   }
-
   h2.text-wrapper-2 {
     font-size: 1.15rem;
     font-weight: 300;
     color: var(--accent-color);
     font-style: italic;
   }
-
   nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 22px 25px;
   }
-
   button {
     background: var(--button-bg);
     border: 2px solid var(--border-color);
@@ -75,23 +67,22 @@
     color: var(--primary-color);
     font-size: 1.1rem;
     cursor: pointer;
-    box-shadow: 3px 4px 0 var(--accent-color),
-                -2px -3px 0 var(--border-color);
+    box-shadow: 3px 8px 15px rgba(212, 163, 115, 0.3);
     transition: background-color 0.4s ease, 
                 box-shadow 0.3s ease,
                 transform 0.3s ease;
     text-align: center;
     user-select: none;
+    animation: floatUpDown 4s ease-in-out infinite;
   }
-
   button:hover,
   button:focus {
     background-color: var(--button-hover-bg);
-    box-shadow: 5px 6px 10px rgba(212, 163, 115, 0.7);
-    transform: scale(1.08);
+    box-shadow: 0 12px 25px rgba(212, 163, 115, 0.7);
+    transform: translateY(-6px) scale(1.1);
     outline: none;
+    animation-play-state: paused; /* pause floating on hover */
   }
-
   /* Unique shape emphasis for main AI button */
   .ai-button {
     grid-column: span 2;
@@ -100,16 +91,26 @@
     color: white;
     font-size: 1.3rem;
     letter-spacing: 0.06em;
-    box-shadow: 0 3px 15px rgba(212, 163, 115, 0.8);
+    box-shadow: 0 10px 30px rgba(212, 163, 115, 0.7);
     font-family: 'Merriweather', serif;
+    animation: floatUpDown 4s ease-in-out infinite 1s;
   }
-
   .ai-button:hover,
   .ai-button:focus {
     background: #bc8759;
-    box-shadow: 0 5px 20px rgba(188, 135, 89, 0.9);
+    box-shadow: 0 15px 40px rgba(188, 135, 89, 0.9);
   }
-
+  /* Floating animation */
+  @keyframes floatUpDown {
+    0%, 100% {
+      transform: translateY(0);
+      box-shadow: 3px 8px 15px rgba(212, 163, 115, 0.3);
+    }
+    50% {
+      transform: translateY(-10px);
+      box-shadow: 10px 15px 25px rgba(212, 163, 115, 0.5);
+    }
+  }
   /* Responsive behavior */
   @media (max-width: 480px) {
     nav {
@@ -123,7 +124,7 @@
 </style>
 </head>
 <body>
-  <main class="container" role="main" aria-label="Anisha Server Classic Unique AI Interface">
+  <main class="container" role="main" aria-label="Anisha Server Floating Unique AI Interface">
     <header>
       <h1 class="text-wrapper">ANISHA SERVER</h1>
       <h2 class="text-wrapper-2">Hello Welcome</h2>
